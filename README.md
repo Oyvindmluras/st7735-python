@@ -10,6 +10,27 @@ Python library to control an ST7735 TFT LCD display. Allows simple drawing on th
 
 Designed specifically to work with a ST7735 based 160x80 pixel TFT SPI display. (Specifically the 0.96" SPI LCD from Pimoroni).
 
+Modified to work with the 8-pin board housing the same display allowing for easy setup. The following two images show the 8-pin board and wiring to a Raspberry Pi:
+
+![8-pin board](ali-screen-0.96.png "8-pin board")
+![wiring](wiring.png "wiring")
+
+ST7735 LCD Class setup. *More in example folders.*
+````
+disp = ST7735.ST7735(
+    port=0, # 0 for SPI0 and 1 for SPI1
+    cs=0,   # 0 for CE0 and 1 for CE1
+    dc=24,
+    backlight=19,   # can be any controllable pin
+    rst=25,         # can be any controllable pin
+    rotation=270,
+    invert=False, 
+    offset_left=24,
+    offset_top=0,
+    spi_speed_hz=4000000
+)
+````
+
 ## Installing
 
 ### Python 2

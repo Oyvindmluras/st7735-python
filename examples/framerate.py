@@ -42,13 +42,29 @@ Running at: {}MHz
 
 # Create ST7735 LCD display class.
 disp = ST7735.ST7735(
-    port=0,
-    cs=ST7735.BG_SPI_CS_FRONT,  # BG_SPI_CSB_BACK or BG_SPI_CS_FRONT
-    dc=9,
-    backlight=19,               # 18 for back BG slot, 19 for front BG slot.
-    rotation=90,
-    spi_speed_hz=SPI_SPEED_MHZ * 1000000
+    port=0, # 0 for SPI0 and 1 for SPI1
+    cs=0,   # 0 for CE0 and 1 for CE1
+    dc=24,
+    backlight=19,   # can be any controllable pin
+    rst=25,         # can be any controllable pin
+    rotation=270,
+    invert=False, 
+    offset_left=24,
+    offset_top=0,
+    spi_speed_hz=4000000
 )
+
+"""
+GPIO pins on Raspberry Pi:
+    GND = Any GND pin
+    VCC = Any +3.3v pin
+    SCL = BCM 11 (SCLK/SCK)
+    SDA = BCM 10 (MOSI)
+    RES = 25 (Reset)
+    DC = 24
+    CS = BCM 8 (or BCM 7 depending on CE)
+    BLK = BCM 19
+"""
 
 WIDTH = disp.width
 HEIGHT = disp.height
